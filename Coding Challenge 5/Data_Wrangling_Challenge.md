@@ -37,7 +37,7 @@ column to calculate Pielou’s evenness index. b. Name the resulting
 dataframe alpha_even.
 
 ``` r
-alpha_even <- mutate(alpha, Pielou = log(shannon/log(richness)))
+alpha_even <- mutate(alpha, Pielou = shannon/log(richness))
 ```
 
 Using tidyverse language of functions and the pipe, use the summarise
@@ -96,7 +96,7 @@ The resulting plot should look like the one to the right.
 alpha_average2 %>%
     select(Time_Point, diff.cotton.even, diff.soybean.even) %>%
   pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = "diff") %>%
-  ggplot(aes(x = Time_Point, y = diff, color = diff)) +
+  ggplot(aes(x = Time_Point, y = value, color = diff)) +
          geom_line() +
          xlab("Time (hrs)") +
          ylab("Difference from soil in Pielou's evenness")
